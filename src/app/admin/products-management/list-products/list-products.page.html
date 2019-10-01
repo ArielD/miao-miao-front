@@ -1,0 +1,32 @@
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchText" animated></ion-searchbar>
+  <ion-card padding>
+    <table>
+      <thead>
+        <tr>
+          <th>№</th>
+          <th>Tittle</th>
+          <th>Price</th>
+          <th width="60px">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of products | filter : searchText; let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{item.title}}</td>
+          <td>{{item.price}}</td>
+          <td>
+            <ion-buttons>
+              <ion-button (click)="deleteProduct(item._id)">
+                <ion-icon name="trash"></ion-icon>
+              </ion-button>
+              <ion-button (click)="editProduct(item)">
+                <ion-icon name="create"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ion-card>
+</ion-content>

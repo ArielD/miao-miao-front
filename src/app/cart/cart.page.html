@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>My Cart</ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="localCart" (click)="cleanCart()">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="!localCart; else cart">
+    <img src="../../assets/image/empty-cart.png" alt="">
+    <div margin>Items added to your cart will appear here.</div>
+    <a href="" margin>Continue shopping</a>
+  </div>
+  <ng-template #cart>
+    <ion-card *ngFor="let item of currentProductCart" (click)="navigateToDetails(item._id)">
+      <ion-card-subtitle>
+        <div class="product-title">{{item.title}}</div>
+      </ion-card-subtitle>
+      <ion-card-content>
+        <ion-img class="product-img" [src]='apiURL + "products/uploads/" + item._id'></ion-img>
+        <div class="info-wrap">
+          <div class="text-description" [innerHTML]="(item.description.length > 80) ? item.description.slice(0, 80) + '...' : item.description"></div>
+          <div class="price-wrap" (click)="$event.stopPropagation()">
+            <div class="counter">
+              <ion-icon class="controls" name="remove" (click)="removeOne(item)"></ion-icon> 
+              <div class="count-number" [innerHTML]="item.quantity"></div>
+              <ion-icon class="controls" (click)="addOne(item)" name="add"></ion-icon>
+            </div> 
+            <div>UAH <span [innerHTML]="item.price*item.quantity"></span></div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    <div padding class="total-price">
+      <div>Total Price:</div> <div>UAH {{totalPrice}}</div>
+    </div>
+    <ion-button expand="full" size="large" color="success" (click)="buy()">Buy</ion-button>
+  </ng-template>
+</ion-content>

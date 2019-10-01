@@ -1,0 +1,21 @@
+ion-header ion-toolbar {
+  --min-height: 40px;
+}
+
+ion-header ion-toolbar:first-child {
+  padding-top: var(--padding-top, 0);
+}
+
+ion-item {
+  --padding-start: 0;
+}
+
+.preview-image {
+  max-height: 100px;
+  width: 100%;
+  object-fit: cover;
+}
+
+ion-select {
+  --padding-start: 0;
+}

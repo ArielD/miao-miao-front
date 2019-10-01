@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/profile"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="filter-panel"></div>
+  <div class="table-wrap">
+    <table width="100%">
+      <tr *ngFor="let order of orders | reverse" [ngClass]="{'confirmed': order.status === 1, 'declined': order.status === 2}">
+        <td>
+          <div *ngFor="let products of order.products">{{products.title}} <span *ngIf="products.quantity > 1">x{{products.quantity}}</span></div>
+        </td>
+        <td>{{order.date | date: 'dd.MM.yyyy'}}</td>
+        <td>${{order.totalPrice}}</td>
+        <td>
+          <div *ngIf="order.status === 0">Pending</div>
+          <div *ngIf="order.status === 1">Confirmed</div>
+          <div *ngIf="order.status === 2">Declined</div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</ion-content>

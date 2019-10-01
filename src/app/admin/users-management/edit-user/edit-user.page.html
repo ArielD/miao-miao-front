@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="arrow-back" (click)="navigateBack()"></ion-icon>
+    </ion-buttons>
+    <ion-title>Edit User</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid *ngIf="user">
+    <ion-row>
+      <ion-col size="7">
+        <ion-item>
+          <ion-input type="text" placeholder="First Name" [(ngModel)]="user.firstName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="Last Name" [(ngModel)]="user.lastName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="Username" [(ngModel)]="user.username"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="5">
+        <div *ngIf="!previewImage; else default">
+          <ion-img class="preview-image" [src]='apiURL + "users/uploads/avatars/" + userId'></ion-img>
+        </div>
+        <ng-template #default>
+          <ion-img class="preview-image" [src]='previewImage'></ion-img>
+        </ng-template>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+            <form method="post" enctype="multipart/form-data">
+              <input type="file" name="image" (change)="uploadImage($event)" />
+            </form>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-input type="email" placeholder="Email" [(ngModel)]="user.email"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-select placeholder="Role" [(ngModel)]="user.role">
+            <ion-select-option value="Admin">Admin</ion-select-option>
+            <ion-select-option value="User">User</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          Registration Date: {{user.registrationDate | date: 'dd/MM/yyyy'}}
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div padding>
+      <ion-button (click)="navigateBack()" color="light">Cancel</ion-button>
+      <ion-button (click)="updateUser()" color="primary">Save</ion-button>
+    </div>
+</ion-content>

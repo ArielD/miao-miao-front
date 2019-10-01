@@ -1,0 +1,35 @@
+.product-img {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+}
+
+ion-item {
+    --padding-start: 0;
+  } 
+
+  
+  .text-price {
+    text-align: right;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px;
+    padding-top: 10px;
+    color: #666;
+  }
+
+  .btn-buy {
+    position: fixed;
+    bottom: 0;
+  }
+
+  ion-fab-button {
+    --background: rgba(0,0,0,0.3); 
+    --background-activated:  rgba(0,0,0,0.3);
+    --background-focused:  rgba(0,0,0,0.3);
+    --box-shadow: none;
+  }
+
+  .product-info {
+    margin-bottom: 50px;
+  }

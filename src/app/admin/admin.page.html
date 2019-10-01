@@ -1,0 +1,32 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Statistics</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-split-pane contentId="content">
+  <ion-menu side="start" contentId="content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Admin Panel</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
+          <ion-item routerDirection="root" (click)="navigateTo(p.url)" [class.active-item]="selectedPath === p.url"><!--(click)="navigateTo(p.url)"-->
+            {{p.title}}
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item (click)="navigateTo('tabs/home')">
+            Home
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="content" main></ion-router-outlet>
+</ion-split-pane>

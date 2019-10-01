@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="arrow-back" (click)="navigateBack()"></ion-icon>
+    </ion-buttons>
+    <ion-title>Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon name="create" (click)="navigateToEditOrder(order._id)"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="order && user && products">
+    <div class="personal-info">
+      <div (click)="navigateToUserEdit(user._id)"> User: {{user.lastName}} {{user.firstName}} </div>
+      <div> Order Date: {{order.date | date: 'dd.MM.yy'}} </div>
+      <div> Status: <span class="order-status pending" *ngIf="order.status === 0">Pending</span>
+        <span class="order-status confirmed" *ngIf="order.status === 1">Confirmed</span>
+        <span class="order-status declined" *ngIf="order.status === 2">Declined</span>
+      </div>
+      <div class="total-price">Total price: <span>{{order.totalPrice}}</span></div>
+    </div>
+    <ul class="products-list">
+      <li *ngFor="let product of products" (click)="navigateToProductEdit(product._id)"><span
+          class="product-name">{{product.title}}
+          <span *ngIf="product.quantity">x{{product.quantity}}</span></span>
+        <img [src]='apiURL + "products/uploads/" + product._id' alt="">
+        <span class="product-price">Price: <span>{{product.quantity * product.price}}</span></span>
+      </li>
+    </ul>
+  </div>
+</ion-content>

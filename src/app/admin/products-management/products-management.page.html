@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" class="btn-menu" (click)="openMenu()">
+      <ion-icon name="menu"></ion-icon>
+    </ion-buttons>
+    <ion-title>Products Management</ion-title>
+    <ion-buttons *ngIf="isAddBtnVisible" (click)="navigateToAddProduct()" class="btn-add" slot="end">
+      <ion-icon name="add-circle-outline"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-router-outlet></ion-router-outlet>
+</ion-content>

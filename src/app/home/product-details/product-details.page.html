@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="arrow-back" (click)="navigateBack()"></ion-icon>
+    </ion-buttons>
+    <ion-title *ngIf="product">{{product.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="top" horizontal="end" slot="fixed"> 
+    <ion-fab-button (click)="addToFavorites()">
+      <ion-icon *ngIf="!isProductFavorite" name="heart-empty"></ion-icon>
+      <ion-icon *ngIf="isProductFavorite" name="heart"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-img *ngIf="product" class="product-img" [src]='apiURL + "products/uploads/" + productId'></ion-img>
+  <div margin *ngIf="product" class="product-info">
+    <ion-item>
+      {{product.description}}
+    </ion-item>
+    <div class="text-price">UAH {{product.price}}</div>
+  </div>
+  <ion-button class="btn btn-buy" (click)="AddToCart()">Buy</ion-button>
+</ion-content>

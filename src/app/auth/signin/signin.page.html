@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Sign In</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+  </fb:login-button> -->
+  <ion-button (click)="signInWithFB()"> Facebook</ion-button>
+
+  <form [formGroup]="signin">
+    <ion-item>
+      <ion-input type="text" placeholder="Username" formControlName="username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+    </ion-item>
+    <div class="auth-group-btn">
+      <ion-button margin (click)="signIn()" color="primary">SignIn</ion-button>
+      <a margin routerLink="../../signup">SignUp</a>
+    </div>
+  </form>
+</ion-content>

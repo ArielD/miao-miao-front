@@ -1,0 +1,25 @@
+.btn-menu {
+    font-size: 26px;
+}
+
+.btn-add {
+    font-size: 22px;
+}
+
+.auth-group-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-buy {
+    color: white;
+    --background: #dc3545;
+    --background-activated: #bd2130;
+    --background-focused: #bd2130;
+    margin: 0;
+    width: 100%;
+    --border-radius: 0;
+    text-transform: uppercase;
+    min-height: 50px;
+}

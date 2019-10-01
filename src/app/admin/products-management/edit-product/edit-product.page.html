@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="arrow-back" (click)="navigateBack()"></ion-icon>
+    </ion-buttons>
+    <ion-title>Edit Product</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="product">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="7">
+          <ion-item>
+            <ion-input type="text" placeholder="Title" [(ngModel)]="product.title"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" placeholder="Price" [(ngModel)]="product.price"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="5">
+          <div *ngIf="!previewImage; else default">
+            <ion-img class="preview-image" [src]='apiURL + "products/uploads/" + productId'></ion-img>
+          </div>
+           <ng-template #default>
+              <ion-img class="preview-image" [src]='previewImage'></ion-img>
+          </ng-template> 
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <form method="post" enctype="multipart/form-data">
+              <input type="file" name="image" (change)="uploadImage($event)" />
+            </form>
+          </ion-item>
+          <ion-item>
+            <ion-textarea placeholder="Description" [(ngModel)]="product.description"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div padding>
+    <ion-button (click)="navigateBack()" color="light">Cancel</ion-button>
+    <ion-button (click)="updateProduct()" color="primary">Save</ion-button>
+  </div>
+</ion-content>

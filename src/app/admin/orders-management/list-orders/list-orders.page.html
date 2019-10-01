@@ -1,0 +1,50 @@
+<ion-content>
+    <ion-item>
+      <ion-label>Choose type of orders</ion-label>
+      <ion-select (ionChange)="filterByStatus(selectedStatus)" [(ngModel)]="selectedStatus">
+        <ion-select-option *ngFor="let item of orderStatus" [value]="item.value">{{item.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-card padding>
+      <table *ngIf="users && loadedOrders">
+        <thead>
+          <tr>
+            <th width="30px">№</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of loadedOrders | filter : searchText; let i = index"
+            [ngClass]="{'confirmed' : item.status === 1, 'declined' : item.status === 2}">
+            <td>{{i + 1}}</td>
+            <td> 
+              <span *ngIf="item.status === 1">Confirmed</span>
+              <span *ngIf="item.status === 2">Declined</span>
+              <span *ngIf="item.status === 0">Pending</span>
+            </td>
+            <td>{{item.date | date: 'dd.MM.yy'}}</td>
+            <td>{{item.totalPrice}}</td>
+            <td>
+              <ion-buttons>
+                <ion-button (click)="detailOrder(item._id)">
+                  <ion-icon name="eye"></ion-icon>
+                </ion-button>
+                <ion-button (click)="editOrder(item._id)">
+                  <ion-icon name="create"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="Loading more data...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </ion-card>
+  </ion-content>

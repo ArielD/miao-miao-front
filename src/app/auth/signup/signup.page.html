@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Sign Up</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+  <form [formGroup]="signup">
+  <ion-item>
+    <ion-input placeholder="First Name" 
+              formControlName="firstName"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Last Name" 
+              formControlName="lastName"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Username" 
+              formControlName="username"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Email"
+              formControlName="email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Password"
+              formControlName="password"></ion-input>
+  </ion-item>
+  <div class="auth-group-btn">
+  <ion-button margin (click)="signUp()" color="primary">signUp</ion-button>
+  <a margin  routerLink="../../signin">SignIn</a>
+</div>
+</form>
+</ion-content>

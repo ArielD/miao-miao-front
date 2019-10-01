@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="searchText"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <mat-tab-group>
+    <mat-tab label="Best" *ngIf="products">
+      <div class="product-grid">
+        <ion-card *ngFor="let item of products | filter : searchText" (click)="navigateToDetails(item._id)">
+          <ion-card-title>
+            <ion-img class="product-img" [src]='apiURL + "products/uploads/" + item._id'></ion-img>
+          </ion-card-title>
+          <ion-card-subtitle>{{item.title}}</ion-card-subtitle>
+          <ion-card-content>
+            UAH {{item.price}}
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </mat-tab>
+    <mat-tab label="Offers">
+      <div padding>
+        content
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</ion-content> 

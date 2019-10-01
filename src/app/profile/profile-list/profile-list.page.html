@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid *ngIf="currentUser; else unauthorized">
+    <ion-row align-items-center>
+      <ion-col size="4">
+        <img class="avatar avatar-big" [src]='apiURL + "users/uploads/avatars/" + currentUser._id'>
+      </ion-col>
+      <ion-col size="6">
+        Hello, {{currentUser.username}}
+      </ion-col>
+      <button (click)="takePhoto()">Take a photo</button>
+      <div *ngIf="photo">
+        <div>photo</div>
+        <img [src]="_DomSanitizationService.bypassSecurityTrustUrl(photo)" alt=""></div>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <mat-action-list *ngIf="navigation">
+          <button mat-list-item (click)="navigate(item.id)" *ngFor="let item of navigation">
+            <ion-icon slot="strat" margin name="{{item.icon}}"></ion-icon> {{item.name}}
+          </button>
+          <button mat-list-item (click)="navigateToAdminPanel()" *ngIf="isAdmin">
+            <ion-icon slot="strat" margin name="hammer"></ion-icon> Admin panel
+          </button>
+        </mat-action-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ng-template #unauthorized>
+    <div margin>
+      Please, <a (click)="signUp()">SignUp</a> or <a
+        (click)="signIn()">SignIn</a>.
+    </div>
+  </ng-template>
+</ion-content>

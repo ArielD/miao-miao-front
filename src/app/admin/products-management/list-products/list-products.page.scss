@@ -1,0 +1,20 @@
+table {
+  width: 100%;
+
+  td {
+    text-align: center;
+  }
+}
+
+ion-toolbar {
+    --min-height: 30px;
+}
+
+ion-title {
+    font-size: 12px;
+}
+
+ion-card {
+  margin: 10px;
+  margin-top: 0;
+}

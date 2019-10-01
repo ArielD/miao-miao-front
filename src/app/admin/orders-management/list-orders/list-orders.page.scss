@@ -1,0 +1,48 @@
+table {
+    width: 100%;
+  
+    td {
+      text-align: center;
+      padding: 8px 4px;
+      border-bottom: 1px dashed lightgrey;
+    }
+
+    tbody tr {
+      &:first-child td {
+        border-top: 1px dashed lightgrey;
+      }
+
+      &:last-child td {
+        border-bottom: none;
+      }
+    }
+
+    th {
+      text-align: center;
+    }
+
+    .confirmed td {
+      color: #155724;
+      background: #d4edda;
+      border-color: #c3e6cb;
+    }
+
+    .declined td {
+      color: #721c24;
+      background: #f8d7da;
+      border-color: #f5c6cb;
+    }
+  }
+  
+  ion-toolbar {
+      --min-height: 30px;
+  }
+  
+  ion-title {
+      font-size: 12px;
+  }
+  
+  ion-card {
+    margin: 10px;
+    padding: 4px 0;
+  }

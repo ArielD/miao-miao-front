@@ -1,0 +1,34 @@
+<ion-content>
+    <ion-searchbar [(ngModel)]="searchText" animated></ion-searchbar>
+    <ion-card padding>
+      <table>
+        <thead>
+          <tr>
+            <th>№</th>
+            <th>FullName</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th width="60px">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of users | filter : searchText; let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{item.firstName}} {{item.lastName}}</td>
+            <td>{{item.username}}</td>
+            <td>{{item.role}}</td>
+            <td>
+              <ion-buttons>
+                <ion-button (click)="deleteUser(item._id)">
+                  <ion-icon name="trash"></ion-icon>
+                </ion-button>
+                <ion-button (click)="editUser(item._id)">
+                  <ion-icon name="create"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ion-card>
+</ion-content>
